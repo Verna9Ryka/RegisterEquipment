@@ -13,6 +13,16 @@ public class Televisions extends BaseType {
     @Column(name = "technology")
     private String technology;
 
+    public Televisions() {
+    }
+
+    public Televisions(Long id, String name, String serialNumber, String color, String size,
+                       int cost, String inStock, String category, String technology) {
+        super(id, name, serialNumber, color, size, cost, inStock);
+        this.category = category;
+        this.technology = technology;
+    }
+
     public String getCategory() {
         return category;
     }

@@ -13,6 +13,16 @@ public class Refrigerators extends BaseType {
     @Column(name = "type_compressor")
     private String typeCompressor;
 
+    public Refrigerators() {
+    }
+
+    public Refrigerators(Long id, String name, String serialNumber, String color, String size,
+                         int cost, String inStock, int numberDoors, String typeCompressor) {
+        super(id, name, serialNumber, color, size, cost, inStock);
+        this.numberDoors = numberDoors;
+        this.typeCompressor = typeCompressor;
+    }
+
     public int getNumberDoors() {
         return numberDoors;
     }

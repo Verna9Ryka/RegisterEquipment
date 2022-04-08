@@ -1,0 +1,28 @@
+server:
+  address: localhost
+  port: 8081
+  servlet:
+    context-path: /
+
+spring:
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/registerEquipmentDB?useUnicode=true&characterEncoding=UTF-8
+    username: adminRE
+    password: 12345
+    initialize: true
+    initialization-mode: always
+    sql-script-encoding: UTF-8
+    schema: classpath*:database/schema.sql
+    data: classpath*:database/data.sql
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+      force-request: true
+      force-response: true

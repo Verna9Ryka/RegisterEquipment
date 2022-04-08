@@ -13,6 +13,16 @@ public class VacuumCleaners extends BaseType {
     @Column(name = "number_modes")
     private Long numberModes;
 
+    public VacuumCleaners() {
+    }
+
+    public VacuumCleaners(Long id, String name, String serialNumber, String color, String size,
+                          int cost, String inStock, Long volumeDustCollector, Long numberModes) {
+        super(id, name, serialNumber, color, size, cost, inStock);
+        this.volumeDustCollector = volumeDustCollector;
+        this.numberModes = numberModes;
+    }
+
     public Long getVolumeDustCollector() {
         return volumeDustCollector;
     }

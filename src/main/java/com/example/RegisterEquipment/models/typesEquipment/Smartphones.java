@@ -13,6 +13,16 @@ public class Smartphones extends BaseType {
     @Column(name = "number_cameras")
     private int numberCameras;
 
+    public Smartphones() {
+    }
+
+    public Smartphones(Long id, String name, String serialNumber, String color, String size,
+                       int cost, String inStock, int memory, int numberCameras) {
+        super(id, name, serialNumber, color, size, cost, inStock);
+        this.memory = memory;
+        this.numberCameras = numberCameras;
+    }
+
     public int getMemory() {
         return memory;
     }

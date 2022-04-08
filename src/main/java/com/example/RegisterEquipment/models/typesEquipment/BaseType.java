@@ -2,30 +2,43 @@ package com.example.RegisterEquipment.models.typesEquipment;
 
 import javax.persistence.*;
 
-@Entity
-public class BaseType {
+@MappedSuperclass
+public abstract class BaseType {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private Long id;
+    protected Long id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @Column(name = "name")
+    protected String name;
 
     @Column(name = "serial_number")
-    private String serialNumber;
+    protected String serialNumber;
 
     @Column(name = "color")
-    private String color;
+    protected String color;
 
     @Column(name = "size")
-    private String size;
+    protected String size;
 
     @Column(name = "cost")
-    private int cost;
+    protected int cost;
 
     @Column(name = "in_stock")
-    private String inStock;
+    protected String inStock;
+
+    public BaseType() {
+    }
+
+    public BaseType(Long id, String name, String serialNumber, String color, String size, int cost, String inStock) {
+        this.id = id;
+        this.name = name;
+        this.serialNumber = serialNumber;
+        this.color = color;
+        this.size = size;
+        this.cost = cost;
+        this.inStock = inStock;
+    }
 
     public Long getId() {
         return id;

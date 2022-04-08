@@ -6,11 +6,11 @@ import javax.persistence.*;
 @Table(name = "register")
 public class Register {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "type_equipment", nullable = false)
+    @Column(name = "type_equipment")
     private String typeEquipment;
 
     @Column(name = "producer_country")
@@ -25,8 +25,26 @@ public class Register {
     @Column(name = "installments", length = 3)
     private String installments;
 
-    @Column(name = "name_model", nullable = false)
+    @Column(name = "name_model_line")
+    private String nameModelLine;
+
+    @Column(name = "name_model")
     private String nameModel;
+
+    public Register() {
+    }
+
+    public Register(Long id, String typeEquipment, String producerCountry, String producerCompany,
+                    String orderOnline, String installments, String nameModelLine, String nameModel) {
+        this.id = id;
+        this.typeEquipment = typeEquipment;
+        this.producerCountry = producerCountry;
+        this.producerCompany = producerCompany;
+        this.orderOnline = orderOnline;
+        this.installments = installments;
+        this.nameModelLine = nameModelLine;
+        this.nameModel = nameModel;
+    }
 
     public Long getId() {
         return id;
@@ -75,6 +93,10 @@ public class Register {
     public void setInstallments(String installments) {
         this.installments = installments;
     }
+
+    public String getNameModelLine() { return nameModelLine; }
+
+    public void setNameModelLine(String nameModelLine) { this.nameModelLine = nameModelLine; }
 
     public String getNameModel() {
         return nameModel;

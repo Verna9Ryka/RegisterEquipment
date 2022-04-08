@@ -11,7 +11,17 @@ public class Computers extends BaseType {
     private String category;
 
     @Column(name = "type_processor")
-    private String typeProcessor ;
+    private String typeProcessor;
+
+    public Computers() {
+    }
+
+    public Computers(Long id, String name, String serialNumber, String color, String size,
+                     int cost, String inStock, String category, String typeProcessor) {
+        super(id, name, serialNumber, color, size, cost, inStock);
+        this.category = category;
+        this.typeProcessor = typeProcessor;
+    }
 
     public String getCategory() {
         return category;
