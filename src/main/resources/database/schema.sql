@@ -112,8 +112,8 @@ CREATE TABLE IF NOT EXISTS public.vacuum_cleaners
     color character varying(255) COLLATE pg_catalog."default",         -- цвет
     size character varying(255) COLLATE pg_catalog."default",          -- размер
 	cost integer,                                                      -- цена
-    volume_dust_collector bigint,                                      -- объём пылесборника
-	number_modes bigint,                                               -- количество режимов
+    volume_dust_collector integer,                                      -- объём пылесборника
+	number_modes integer,                                               -- количество режимов
 	in_stock character varying(3) COLLATE pg_catalog."default",        -- наличие товара (Да/Нет)
     CONSTRAINT vacuum_cleaners_pkey PRIMARY KEY (id)
 )

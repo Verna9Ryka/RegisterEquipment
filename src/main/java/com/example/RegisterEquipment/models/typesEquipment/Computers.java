@@ -7,6 +7,18 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "computers")
 public class Computers extends BaseType {
+
+    public static enum Attribute{
+        NAME,
+        SERIAL_NUMBER,
+        COLOR,
+        SIZE,
+        COST,
+        CATEGORY,
+        TYPE_PROCESSOR,
+        IN_STOCK
+    }
+
     @Column(name = "category")
     private String category;
 
@@ -37,5 +49,10 @@ public class Computers extends BaseType {
 
     public void setTypeProcessor(String typeProcessor) {
         this.typeProcessor = typeProcessor;
+    }
+
+    public void print() {
+        super.print();
+        System.out.println(category + " | " + typeProcessor + " | " + inStock);
     }
 }

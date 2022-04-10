@@ -5,6 +5,18 @@ import javax.persistence.*;
 @Entity
 @Table(name = "register")
 public class Register {
+
+    public static enum Attribute {
+        Id,
+        TYPE_EQUIPMENT,
+        PRODUCER_COUNTRY,
+        PRODUCER_COMPANY,
+        ORDER_ONLINE,
+        INSTALLMENTS,
+        NAME_MODEL_LINE,
+        NAME_MODEL
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -48,10 +60,6 @@ public class Register {
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getTypeEquipment() {
@@ -104,5 +112,10 @@ public class Register {
 
     public void setNameModel(String nameModel) {
         this.nameModel = nameModel;
+    }
+
+    public void print() {
+        System.out.println(id + " | " + typeEquipment + " | " + producerCountry + " | " + producerCompany + " | " +
+                orderOnline + " | " + installments + " | " + nameModelLine + " | " + nameModel);
     }
 }

@@ -7,6 +7,18 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "televisions")
 public class Televisions extends BaseType {
+
+    public static enum Attribute{
+        NAME,
+        SERIAL_NUMBER,
+        COLOR,
+        SIZE,
+        COST,
+        CATEGORY,
+        TECHNOLOGY,
+        IN_STOCK
+    }
+
     @Column(name = "category")
     private String category;
 

@@ -7,11 +7,23 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "vacuum_cleaners")
 public class VacuumCleaners extends BaseType {
+
+    public static enum Attribute{
+        NAME,
+        SERIAL_NUMBER,
+        COLOR,
+        SIZE,
+        COST,
+        VOLUME_DUST_COLLECTOR,
+        NUMBER_MODES,
+        IN_STOCK
+    }
+
     @Column(name = "volume_dust_collector")
-    private Long volumeDustCollector;
+    private int volumeDustCollector;
 
     @Column(name = "number_modes")
-    private Long numberModes;
+    private int numberModes;
 
     public VacuumCleaners() {
     }

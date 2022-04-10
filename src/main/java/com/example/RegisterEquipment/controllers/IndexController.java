@@ -1,15 +1,55 @@
 package com.example.RegisterEquipment.controllers;
 
+import com.example.RegisterEquipment.models.typesEquipment.Computers;
+import com.example.RegisterEquipment.services.typesEquipment.ComputersService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.List;
+
 @Controller
 public class IndexController {
+
+    private String str;
+
+    /*@Autowired
+    private BaseTypeService<Computers> baseTypeService;*/
+    @Autowired
+    private ComputersService computersService;
 
     @GetMapping("/")
     public String homePageOpen(Model model) {
         model.addAttribute("title", "Главная страница");
+        List<Computers> list = null;
+        /*str = "Холодильник";
+        try {
+            register = registerService.find(Register.Attribute.TYPE_EQUIPMENT, str);
+        } catch (Exception ex) {
+
+        }
+        for (Register el: register) {
+            el.print();
+        }*/
+        str = "Белый";
+        try {
+            list = computersService.find(Computers.Attribute.COLOR, str);
+        } catch (Exception ex) {
+
+        }
+        for (Computers el: list) {
+            el.print();
+        }
+        str = "Игровой";
+        try {
+            list = computersService.find(Computers.Attribute.CATEGORY, str);
+        } catch (Exception ex) {
+
+        }
+        for (Computers el: list) {
+            el.print();
+        }
         return "index";
     }
     /*@Autowired

@@ -13,8 +13,8 @@ spring:
     initialize: true
     initialization-mode: always
     sql-script-encoding: UTF-8
-    schema: classpath*:database/schema.sql
-    data: classpath*:database/data.sql
+    #schema: classpath*:database/schema.sql
+    #data: classpath*:database/data.sql
   jpa:
     hibernate:
       ddl-auto: none

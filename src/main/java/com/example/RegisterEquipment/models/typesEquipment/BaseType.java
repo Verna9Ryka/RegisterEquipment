@@ -3,7 +3,10 @@ package com.example.RegisterEquipment.models.typesEquipment;
 import javax.persistence.*;
 
 @MappedSuperclass
+/*@Entity
+@Inheritance(strategy = InheritanceType.JOINED)*/
 public abstract class BaseType {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -42,10 +45,6 @@ public abstract class BaseType {
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -94,5 +93,10 @@ public abstract class BaseType {
 
     public void setInStock(String inStock) {
         this.inStock = inStock;
+    }
+
+    public void print() {
+        System.out.println(id + " | " + name + " | " + serialNumber + " | " + color + " | " +
+                size + " | " + cost + " | ");
     }
 }
