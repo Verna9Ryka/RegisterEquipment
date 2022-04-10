@@ -8,17 +8,6 @@ import javax.persistence.Table;
 @Table(name = "smartphones")
 public class Smartphones extends BaseType {
 
-    public static enum Attribute{
-        NAME,
-        SERIAL_NUMBER,
-        COLOR,
-        SIZE,
-        COST,
-        MEMORY,
-        NUMBER_CAMERAS,
-        IN_STOCK
-    }
-
     @Column(name = "memory")
     private int memory;
 

@@ -1,22 +1,22 @@
 package com.example.RegisterEquipment.services.typesEquipment;
 
-import com.example.RegisterEquipment.enums.ComputersAttributes;
-import com.example.RegisterEquipment.models.typesEquipment.Computers;
-import com.example.RegisterEquipment.repositories.typesEquipment.ComputersRepository;
+import com.example.RegisterEquipment.enums.SmartphonesAttributes;
+import com.example.RegisterEquipment.models.typesEquipment.Smartphones;
+import com.example.RegisterEquipment.repositories.typesEquipment.SmartphonesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class ComputersService {
-
-    private List<Computers> list;
+public class SmartphonesService {
+    
+    private List<Smartphones> list;
 
     @Autowired
-    private ComputersRepository repository;
+    private SmartphonesRepository repository;
 
-    public List<Computers> find(final ComputersAttributes attribute, final Long value) {
+    public List<Smartphones> find(final SmartphonesAttributes attribute, final Long value) {
         switch (attribute) {
             case ID: {
                 list = this.repository.findAllById(value);
@@ -26,13 +26,21 @@ public class ComputersService {
                 list = this.repository.findAllByCost(Math.toIntExact(value));
                 break;
             }
+            case MEMORY: {
+                list = this.repository.findAllByMemory(Math.toIntExact(value));
+                break;
+            }
+            case NUMBER_CAMERAS: {
+                list = this.repository.findAllByNumberCameras(Math.toIntExact(value));
+                break;
+            }
             default:
                 break;
         }
         return list;
     }
 
-    public List<Computers> find(final ComputersAttributes attribute, final String value) {
+    public List<Smartphones> find(final SmartphonesAttributes attribute, final String value) {
         switch (attribute) {
             case NAME: {
                 list = this.repository.findAllByName(value);
@@ -54,21 +62,13 @@ public class ComputersService {
                 list = this.repository.findAllByInStock(value);
                 break;
             }
-            case CATEGORY: {
-                list = this.repository.findAllByCategory(value);
-                break;
-            }
-            case TYPE_PROCESSOR: {
-                list = this.repository.findAllByTypeProcessor(value);
-                break;
-            }
             default:
                 break;
         }
         return list;
     }
 
-    public void save(Computers value) {
+    public void save(Smartphones value) {
         this.repository.saveAndFlush(value);
     }
 

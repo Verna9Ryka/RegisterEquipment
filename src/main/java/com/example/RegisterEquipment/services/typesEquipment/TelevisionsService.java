@@ -1,22 +1,22 @@
 package com.example.RegisterEquipment.services.typesEquipment;
 
-import com.example.RegisterEquipment.enums.ComputersAttributes;
-import com.example.RegisterEquipment.models.typesEquipment.Computers;
-import com.example.RegisterEquipment.repositories.typesEquipment.ComputersRepository;
+import com.example.RegisterEquipment.enums.TelevisionsAttributes;
+import com.example.RegisterEquipment.models.typesEquipment.Televisions;
+import com.example.RegisterEquipment.repositories.typesEquipment.TelevisionsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class ComputersService {
+public class TelevisionsService {
 
-    private List<Computers> list;
+    private List<Televisions> list;
 
     @Autowired
-    private ComputersRepository repository;
+    private TelevisionsRepository repository;
 
-    public List<Computers> find(final ComputersAttributes attribute, final Long value) {
+    public List<Televisions> find(final TelevisionsAttributes attribute, final Long value) {
         switch (attribute) {
             case ID: {
                 list = this.repository.findAllById(value);
@@ -32,7 +32,7 @@ public class ComputersService {
         return list;
     }
 
-    public List<Computers> find(final ComputersAttributes attribute, final String value) {
+    public List<Televisions> find(final TelevisionsAttributes attribute, final String value) {
         switch (attribute) {
             case NAME: {
                 list = this.repository.findAllByName(value);
@@ -58,8 +58,8 @@ public class ComputersService {
                 list = this.repository.findAllByCategory(value);
                 break;
             }
-            case TYPE_PROCESSOR: {
-                list = this.repository.findAllByTypeProcessor(value);
+            case TECHNOLOGY: {
+                list = this.repository.findAllByTechnology(value);
                 break;
             }
             default:
@@ -68,7 +68,7 @@ public class ComputersService {
         return list;
     }
 
-    public void save(Computers value) {
+    public void save(Televisions value) {
         this.repository.saveAndFlush(value);
     }
 

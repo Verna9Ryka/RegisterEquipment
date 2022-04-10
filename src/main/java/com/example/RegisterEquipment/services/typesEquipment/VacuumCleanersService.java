@@ -1,22 +1,22 @@
 package com.example.RegisterEquipment.services.typesEquipment;
 
-import com.example.RegisterEquipment.enums.ComputersAttributes;
-import com.example.RegisterEquipment.models.typesEquipment.Computers;
-import com.example.RegisterEquipment.repositories.typesEquipment.ComputersRepository;
+import com.example.RegisterEquipment.enums.VacuumCleanersAttributes;
+import com.example.RegisterEquipment.models.typesEquipment.VacuumCleaners;
+import com.example.RegisterEquipment.repositories.typesEquipment.VacuumCleanersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class ComputersService {
+public class VacuumCleanersService {
 
-    private List<Computers> list;
+    private List<VacuumCleaners> list;
 
     @Autowired
-    private ComputersRepository repository;
+    private VacuumCleanersRepository repository;
 
-    public List<Computers> find(final ComputersAttributes attribute, final Long value) {
+    public List<VacuumCleaners> find(final VacuumCleanersAttributes attribute, final Long value) {
         switch (attribute) {
             case ID: {
                 list = this.repository.findAllById(value);
@@ -26,13 +26,21 @@ public class ComputersService {
                 list = this.repository.findAllByCost(Math.toIntExact(value));
                 break;
             }
+            case VOLUME_DUST_COLLECTOR: {
+                list = this.repository.findAllByVolumeDustCollector(Math.toIntExact(value));
+                break;
+            }
+            case NUMBER_MODES: {
+                list = this.repository.findAllByNumberModes(Math.toIntExact(value));
+                break;
+            }
             default:
                 break;
         }
         return list;
     }
 
-    public List<Computers> find(final ComputersAttributes attribute, final String value) {
+    public List<VacuumCleaners> find(final VacuumCleanersAttributes attribute, final String value) {
         switch (attribute) {
             case NAME: {
                 list = this.repository.findAllByName(value);
@@ -54,21 +62,13 @@ public class ComputersService {
                 list = this.repository.findAllByInStock(value);
                 break;
             }
-            case CATEGORY: {
-                list = this.repository.findAllByCategory(value);
-                break;
-            }
-            case TYPE_PROCESSOR: {
-                list = this.repository.findAllByTypeProcessor(value);
-                break;
-            }
             default:
                 break;
         }
         return list;
     }
 
-    public void save(Computers value) {
+    public void save(VacuumCleaners value) {
         this.repository.saveAndFlush(value);
     }
 

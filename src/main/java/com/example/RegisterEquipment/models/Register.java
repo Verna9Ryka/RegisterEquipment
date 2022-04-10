@@ -6,17 +6,6 @@ import javax.persistence.*;
 @Table(name = "register")
 public class Register {
 
-    public static enum Attribute {
-        Id,
-        TYPE_EQUIPMENT,
-        PRODUCER_COUNTRY,
-        PRODUCER_COMPANY,
-        ORDER_ONLINE,
-        INSTALLMENTS,
-        NAME_MODEL_LINE,
-        NAME_MODEL
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)

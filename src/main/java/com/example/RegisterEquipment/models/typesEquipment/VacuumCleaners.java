@@ -8,17 +8,6 @@ import javax.persistence.Table;
 @Table(name = "vacuum_cleaners")
 public class VacuumCleaners extends BaseType {
 
-    public static enum Attribute{
-        NAME,
-        SERIAL_NUMBER,
-        COLOR,
-        SIZE,
-        COST,
-        VOLUME_DUST_COLLECTOR,
-        NUMBER_MODES,
-        IN_STOCK
-    }
-
     @Column(name = "volume_dust_collector")
     private int volumeDustCollector;
 
@@ -29,25 +18,25 @@ public class VacuumCleaners extends BaseType {
     }
 
     public VacuumCleaners(Long id, String name, String serialNumber, String color, String size,
-                          int cost, String inStock, Long volumeDustCollector, Long numberModes) {
+                          int cost, String inStock, int volumeDustCollector, int numberModes) {
         super(id, name, serialNumber, color, size, cost, inStock);
         this.volumeDustCollector = volumeDustCollector;
         this.numberModes = numberModes;
     }
 
-    public Long getVolumeDustCollector() {
+    public int getVolumeDustCollector() {
         return volumeDustCollector;
     }
 
-    public void setVolumeDustCollector(Long volumeDustCollector) {
+    public void setVolumeDustCollector(int volumeDustCollector) {
         this.volumeDustCollector = volumeDustCollector;
     }
 
-    public Long getNumberModes() {
+    public int getNumberModes() {
         return numberModes;
     }
 
-    public void setNumberModes(Long numberModes) {
+    public void setNumberModes(int numberModes) {
         this.numberModes = numberModes;
     }
 }

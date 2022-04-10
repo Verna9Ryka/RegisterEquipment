@@ -1,5 +1,6 @@
 package com.example.RegisterEquipment.controllers;
 
+import com.example.RegisterEquipment.enums.ComputersAttributes;
 import com.example.RegisterEquipment.models.typesEquipment.Computers;
 import com.example.RegisterEquipment.services.typesEquipment.ComputersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,8 @@ import java.util.List;
 @Controller
 public class IndexController {
 
-    private String str;
+    private String strValue;
+    private Long intValue;
 
     /*@Autowired
     private BaseTypeService<Computers> baseTypeService;*/
@@ -32,18 +34,30 @@ public class IndexController {
         for (Register el: register) {
             el.print();
         }*/
-        str = "Белый";
+        System.out.println();
+        strValue = "Белый";
         try {
-            list = computersService.find(Computers.Attribute.COLOR, str);
+            list = computersService.find(ComputersAttributes.COLOR, strValue);
         } catch (Exception ex) {
 
         }
         for (Computers el: list) {
             el.print();
         }
-        str = "Игровой";
+        System.out.println();
+        strValue = "Игровой";
         try {
-            list = computersService.find(Computers.Attribute.CATEGORY, str);
+            list = computersService.find(ComputersAttributes.CATEGORY, strValue);
+        } catch (Exception ex) {
+
+        }
+        for (Computers el: list) {
+            el.print();
+        }
+        System.out.println();
+        intValue = Long.valueOf(40000);
+        try {
+            list = computersService.find(ComputersAttributes.COST, intValue);
         } catch (Exception ex) {
 
         }
