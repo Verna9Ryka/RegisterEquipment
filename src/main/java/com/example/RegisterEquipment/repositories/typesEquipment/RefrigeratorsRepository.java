@@ -10,10 +10,10 @@ public interface RefrigeratorsRepository extends JpaRepository<Refrigerators, Lo
     public List<Refrigerators> findAllById(final Long value);
     public List<Refrigerators> findAllByName(final String value);
     public List<Refrigerators> findAllBySerialNumber(final String value);
-    public List<Refrigerators> findAllByColor(final String value);
+    public List<Refrigerators> findAllByColorIgnoreCase(final String value);
     public List<Refrigerators> findAllBySize(final String value);
     public List<Refrigerators> findAllByCost(final int value);
-    public List<Refrigerators> findAllByInStock(final String value);
+    public List<Refrigerators> findAllByInStockIgnoreCase(final String value);
     public List<Refrigerators> findAllByNumberDoors(final int value);
     public List<Refrigerators> findAllByTypeCompressor(final String value);
 }

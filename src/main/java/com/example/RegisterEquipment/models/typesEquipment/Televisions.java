@@ -24,6 +24,13 @@ public class Televisions extends BaseType {
         this.technology = technology;
     }
 
+    public Televisions(String name, String serialNumber, String color, String size,
+                       int cost, String inStock, String category, String technology) {
+        super(name, serialNumber, color, size, cost, inStock);
+        this.category = category;
+        this.technology = technology;
+    }
+
     public String getCategory() {
         return category;
     }

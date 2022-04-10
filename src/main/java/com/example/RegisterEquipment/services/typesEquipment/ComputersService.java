@@ -1,9 +1,12 @@
 package com.example.RegisterEquipment.services.typesEquipment;
 
 import com.example.RegisterEquipment.enums.ComputersAttributes;
+import com.example.RegisterEquipment.enums.RegisterAttributes;
+import com.example.RegisterEquipment.models.Register;
 import com.example.RegisterEquipment.models.typesEquipment.Computers;
 import com.example.RegisterEquipment.repositories.typesEquipment.ComputersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +18,10 @@ public class ComputersService {
 
     @Autowired
     private ComputersRepository repository;
+
+    public List<Computers> find() {
+        return this.repository.findAll();
+    }
 
     public List<Computers> find(final ComputersAttributes attribute, final Long value) {
         switch (attribute) {
@@ -43,7 +50,7 @@ public class ComputersService {
                 break;
             }
             case COLOR: {
-                list = this.repository.findAllByColor(value);
+                list = this.repository.findAllByColorIgnoreCase(value);
                 break;
             }
             case SIZE: {
@@ -51,11 +58,11 @@ public class ComputersService {
                 break;
             }
             case IN_STOCK: {
-                list = this.repository.findAllByInStock(value);
+                list = this.repository.findAllByInStockIgnoreCase(value);
                 break;
             }
             case CATEGORY: {
-                list = this.repository.findAllByCategory(value);
+                list = this.repository.findAllByCategoryIgnoreCase(value);
                 break;
             }
             case TYPE_PROCESSOR: {
@@ -66,6 +73,10 @@ public class ComputersService {
                 break;
         }
         return list;
+    }
+
+    public List<Computers> sortSelection(final ComputersAttributes attribute, final Sort.Direction direction) throws Exception {
+        return this.repository.findAll((direction == Sort.Direction.ASC) ? Sort.by(ComputersAttributes.getAttributeName(attribute)).ascending() : Sort.by(ComputersAttributes.getAttributeName(attribute)).descending());
     }
 
     public void save(Computers value) {

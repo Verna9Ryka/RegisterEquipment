@@ -10,10 +10,10 @@ public interface SmartphonesRepository extends JpaRepository<Smartphones, Long> 
     public List<Smartphones> findAllById(final Long value);
     public List<Smartphones> findAllByName(final String value);
     public List<Smartphones> findAllBySerialNumber(final String value);
-    public List<Smartphones> findAllByColor(final String value);
+    public List<Smartphones> findAllByColorIgnoreCase(final String value);
     public List<Smartphones> findAllBySize(final String value);
     public List<Smartphones> findAllByCost(final int value);
-    public List<Smartphones> findAllByInStock(final String value);
+    public List<Smartphones> findAllByInStockIgnoreCase(final String value);
     public List<Smartphones> findAllByMemory(final int value);
     public List<Smartphones> findAllByNumberCameras(final int value);
 }

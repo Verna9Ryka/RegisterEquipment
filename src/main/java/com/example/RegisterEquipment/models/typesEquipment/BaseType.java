@@ -1,10 +1,10 @@
 package com.example.RegisterEquipment.models.typesEquipment;
 
+import com.example.RegisterEquipment.enums.RegisterAttributes;
+
 import javax.persistence.*;
 
 @MappedSuperclass
-/*@Entity
-@Inheritance(strategy = InheritanceType.JOINED)*/
 public abstract class BaseType {
 
     @Id
@@ -35,6 +35,15 @@ public abstract class BaseType {
 
     public BaseType(Long id, String name, String serialNumber, String color, String size, int cost, String inStock) {
         this.id = id;
+        this.name = name;
+        this.serialNumber = serialNumber;
+        this.color = color;
+        this.size = size;
+        this.cost = cost;
+        this.inStock = inStock;
+    }
+
+    public BaseType(String name, String serialNumber, String color, String size, int cost, String inStock) {
         this.name = name;
         this.serialNumber = serialNumber;
         this.color = color;
@@ -93,6 +102,11 @@ public abstract class BaseType {
 
     public void setInStock(String inStock) {
         this.inStock = inStock;
+    }
+
+    public String getAttributName(final Enum attribute) {
+        String name = null;
+        return name;
     }
 
     public void print() {

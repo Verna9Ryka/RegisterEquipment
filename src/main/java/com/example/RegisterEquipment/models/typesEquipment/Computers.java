@@ -23,6 +23,13 @@ public class Computers extends BaseType {
         this.typeProcessor = typeProcessor;
     }
 
+    public Computers(String name, String serialNumber, String color, String size,
+                     int cost, String inStock, String category, String typeProcessor) {
+        super(name, serialNumber, color, size, cost, inStock);
+        this.category = category;
+        this.typeProcessor = typeProcessor;
+    }
+
     public String getCategory() {
         return category;
     }

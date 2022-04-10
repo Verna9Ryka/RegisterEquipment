@@ -24,6 +24,13 @@ public class Smartphones extends BaseType {
         this.numberCameras = numberCameras;
     }
 
+    public Smartphones(String name, String serialNumber, String color, String size,
+                       int cost, String inStock, int memory, int numberCameras) {
+        super(name, serialNumber, color, size, cost, inStock);
+        this.memory = memory;
+        this.numberCameras = numberCameras;
+    }
+
     public int getMemory() {
         return memory;
     }

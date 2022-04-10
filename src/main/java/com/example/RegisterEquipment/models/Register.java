@@ -47,6 +47,17 @@ public class Register {
         this.nameModel = nameModel;
     }
 
+    public Register(String typeEquipment, String producerCountry, String producerCompany,
+                    String orderOnline, String installments, String nameModelLine, String nameModel) {
+        this.typeEquipment = typeEquipment;
+        this.producerCountry = producerCountry;
+        this.producerCompany = producerCompany;
+        this.orderOnline = orderOnline;
+        this.installments = installments;
+        this.nameModelLine = nameModelLine;
+        this.nameModel = nameModel;
+    }
+
     public Long getId() {
         return id;
     }

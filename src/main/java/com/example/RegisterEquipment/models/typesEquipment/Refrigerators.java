@@ -24,6 +24,13 @@ public class Refrigerators extends BaseType {
         this.typeCompressor = typeCompressor;
     }
 
+    public Refrigerators(String name, String serialNumber, String color, String size,
+                         int cost, String inStock, int numberDoors, String typeCompressor) {
+        super(name, serialNumber, color, size, cost, inStock);
+        this.numberDoors = numberDoors;
+        this.typeCompressor = typeCompressor;
+    }
+
     public int getNumberDoors() {
         return numberDoors;
     }

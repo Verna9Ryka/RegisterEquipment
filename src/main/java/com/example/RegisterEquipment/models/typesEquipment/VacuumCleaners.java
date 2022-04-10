@@ -24,6 +24,13 @@ public class VacuumCleaners extends BaseType {
         this.numberModes = numberModes;
     }
 
+    public VacuumCleaners(String name, String serialNumber, String color, String size,
+                          int cost, String inStock, int volumeDustCollector, int numberModes) {
+        super(name, serialNumber, color, size, cost, inStock);
+        this.volumeDustCollector = volumeDustCollector;
+        this.numberModes = numberModes;
+    }
+
     public int getVolumeDustCollector() {
         return volumeDustCollector;
     }

@@ -1,7 +1,6 @@
 package com.example.RegisterEquipment.services;
 
 import com.example.RegisterEquipment.enums.RegisterAttributes;
-import com.example.RegisterEquipment.enums.SortDirection;
 import com.example.RegisterEquipment.models.Register;
 import com.example.RegisterEquipment.repositories.RegisterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,11 +32,11 @@ public final class RegisterService {
     public List<Register> find(final RegisterAttributes attribute, final String value) {
         switch (attribute) {
             case TYPE_EQUIPMENT: {
-                list = this.repository.findAllByTypeEquipment(value);
+                list = this.repository.findAllByTypeEquipmentIgnoreCase(value);
                 break;
             }
             case PRODUCER_COUNTRY: {
-                list = this.repository.findAllByProducerCountry(value);
+                list = this.repository.findAllByProducerCountryIgnoreCase(value);
                 break;
             }
             case PRODUCER_COMPANY: {
@@ -45,15 +44,15 @@ public final class RegisterService {
                 break;
             }
             case ORDER_ONLINE: {
-                list = this.repository.findAllByOrderOnline(value);
+                list = this.repository.findAllByOrderOnlineIgnoreCase(value);
                 break;
             }
             case INSTALLMENTS: {
-                list = this.repository.findAllByInstallments(value);
+                list = this.repository.findAllByInstallmentsIgnoreCase(value);
                 break;
             }
             case NAME_MODEL_LINE: {
-                list = this.repository.findAllByNameModelLine(value);
+                list = this.repository.findAllByNameModelLineIgnoreCase(value);
                 break;
             }
             case NAME_MODEL: {
@@ -66,52 +65,8 @@ public final class RegisterService {
         return list;
     }
 
-    public List<Register> selectOrder(final RegisterAttributes attribute, final SortDirection direction) throws Exception {
-        Sort sort = null;
-        String name_column = null;
-        switch (attribute) {
-            case ID: {
-                name_column = "id";
-                break;
-            }
-            case TYPE_EQUIPMENT: {
-                name_column = "type_equipment";
-                break;
-            }
-            case PRODUCER_COUNTRY: {
-                name_column = "producer_country";
-                break;
-            }
-            case PRODUCER_COMPANY: {
-                name_column = "producer_company";
-                break;
-            }
-            case ORDER_ONLINE: {
-                name_column = "order_online";
-                break;
-            }
-            case INSTALLMENTS: {
-                name_column = "installments";
-                break;
-            }
-            case NAME_MODEL_LINE: {
-                name_column = "name_model_line";
-                break;
-            }
-            case NAME_MODEL: {
-                name_column = "name_model";
-                break;
-            }
-            default:
-                break;
-        }
-        if (direction == direction.ASC) {
-            sort = Sort.by(name_column).ascending();
-        } else if (direction == direction.DESC)
-        {
-            sort = Sort.by(name_column).descending();
-        }
-        return this.repository.findAll(sort);
+    public List<Register> sortSelection(final RegisterAttributes attribute, final Sort.Direction direction){
+        return this.repository.findAll((direction == Sort.Direction.ASC) ? Sort.by(RegisterAttributes.getAttributeName(attribute)).ascending() : Sort.by(RegisterAttributes.getAttributeName(attribute)).descending());
     }
 
     public void save(Register value) {

@@ -10,10 +10,10 @@ public interface VacuumCleanersRepository extends JpaRepository<VacuumCleaners, 
     public List<VacuumCleaners> findAllById(final Long value);
     public List<VacuumCleaners> findAllByName(final String value);
     public List<VacuumCleaners> findAllBySerialNumber(final String value);
-    public List<VacuumCleaners> findAllByColor(final String value);
+    public List<VacuumCleaners> findAllByColorIgnoreCase(final String value);
     public List<VacuumCleaners> findAllBySize(final String value);
     public List<VacuumCleaners> findAllByCost(final int value);
-    public List<VacuumCleaners> findAllByInStock(final String value);
+    public List<VacuumCleaners> findAllByInStockIgnoreCase(final String value);
     public List<VacuumCleaners> findAllByVolumeDustCollector(final int value);
     public List<VacuumCleaners> findAllByNumberModes(final int value);
 }

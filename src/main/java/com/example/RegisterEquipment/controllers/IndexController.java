@@ -1,9 +1,13 @@
 package com.example.RegisterEquipment.controllers;
 
 import com.example.RegisterEquipment.enums.ComputersAttributes;
+import com.example.RegisterEquipment.enums.RegisterAttributes;
+import com.example.RegisterEquipment.models.Register;
 import com.example.RegisterEquipment.models.typesEquipment.Computers;
+import com.example.RegisterEquipment.services.RegisterService;
 import com.example.RegisterEquipment.services.typesEquipment.ComputersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,56 +19,108 @@ public class IndexController {
 
     private String strValue;
     private Long intValue;
+    //private List<Register> list;
+    private List<Computers> list;
 
     /*@Autowired
-    private BaseTypeService<Computers> baseTypeService;*/
+    private RegisterService service;*/
     @Autowired
-    private ComputersService computersService;
+    private ComputersService service;
 
     @GetMapping("/")
     public String homePageOpen(Model model) {
         model.addAttribute("title", "Главная страница");
-        List<Computers> list = null;
-        /*str = "Холодильник";
+
+        service.save(new Computers("HP Bundle 310 G7 MT", "310G7MT", "Желтый", "160х360х380 мм", 58800, "да", "AMD Ryzen 7 9600X", "Игровой"));
+
         try {
-            register = registerService.find(Register.Attribute.TYPE_EQUIPMENT, str);
+            list = service.find();
         } catch (Exception ex) {
 
         }
-        for (Register el: register) {
+        for (Computers el: list) {
+            el.print();
+        }
+
+        /*System.out.println();
+        strValue = "компьютер";
+        try {
+            list = service.find(RegisterAttributes.TYPE_EQUIPMENT, strValue);
+        } catch (Exception ex) {
+
+        }
+        for (Register el: list) {
+            el.print();
+        }
+        System.out.println();*/
+        /*strValue = "Белый";
+        try {
+            list = service.find(ComputersAttributes.COLOR, strValue);
+        } catch (Exception ex) {
+
+        }
+        for (Computers el: list) {
             el.print();
         }*/
-        System.out.println();
-        strValue = "Белый";
+        /*System.out.println();
+        strValue = "рАбоЧИЙ";
         try {
-            list = computersService.find(ComputersAttributes.COLOR, strValue);
+            list = service.find(ComputersAttributes.CATEGORY, strValue);
         } catch (Exception ex) {
 
         }
         for (Computers el: list) {
             el.print();
-        }
-        System.out.println();
-        strValue = "Игровой";
-        try {
-            list = computersService.find(ComputersAttributes.CATEGORY, strValue);
-        } catch (Exception ex) {
-
-        }
-        for (Computers el: list) {
-            el.print();
-        }
-        System.out.println();
+        }*/
+        /*System.out.println();
         intValue = Long.valueOf(40000);
         try {
-            list = computersService.find(ComputersAttributes.COST, intValue);
+            list = service.find(ComputersAttributes.COST, intValue);
+        } catch (Exception ex) {
+
+        }
+        for (Computers el: list) {
+            el.print();
+        }*/
+        /*System.out.println();
+        try {
+            list = service.sortSelection(ComputersAttributes.COST, SortDirection.ASC);
         } catch (Exception ex) {
 
         }
         for (Computers el: list) {
             el.print();
         }
+        System.out.println();
+        try {
+            list = service.sortSelection(ComputersAttributes.COST, SortDirection.DESC);
+        } catch (Exception ex) {
+
+        }
+        for (Computers el: list) {
+            el.print();
+        }*/
+        /*System.out.println();
+        try {
+            list = service.sortSelection(ComputersAttributes.TYPE_PROCESSOR, Sort.Direction.ASC);
+        } catch (Exception ex) {
+
+        }
+        for (Computers el: list) {
+            el.print();
+        }
+        System.out.println();
+        try {
+            list = service.sortSelection(ComputersAttributes.TYPE_PROCESSOR, Sort.Direction.DESC);
+        } catch (Exception ex) {
+
+        }
+        for (Computers el: list) {
+            el.print();
+        }*/
+
         return "index";
+
     }
     /*@Autowired
     public SiteUsersInterface siteUsersInterface;

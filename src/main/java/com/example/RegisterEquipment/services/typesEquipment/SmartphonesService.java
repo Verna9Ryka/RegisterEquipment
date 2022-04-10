@@ -1,9 +1,12 @@
 package com.example.RegisterEquipment.services.typesEquipment;
 
+import com.example.RegisterEquipment.enums.RefrigeratorsAttributes;
 import com.example.RegisterEquipment.enums.SmartphonesAttributes;
+import com.example.RegisterEquipment.models.typesEquipment.Refrigerators;
 import com.example.RegisterEquipment.models.typesEquipment.Smartphones;
 import com.example.RegisterEquipment.repositories.typesEquipment.SmartphonesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -51,7 +54,7 @@ public class SmartphonesService {
                 break;
             }
             case COLOR: {
-                list = this.repository.findAllByColor(value);
+                list = this.repository.findAllByColorIgnoreCase(value);
                 break;
             }
             case SIZE: {
@@ -59,13 +62,17 @@ public class SmartphonesService {
                 break;
             }
             case IN_STOCK: {
-                list = this.repository.findAllByInStock(value);
+                list = this.repository.findAllByInStockIgnoreCase(value);
                 break;
             }
             default:
                 break;
         }
         return list;
+    }
+
+    public List<Smartphones> sortSelection(final SmartphonesAttributes attribute, final Sort.Direction direction) throws Exception {
+        return this.repository.findAll((direction == Sort.Direction.ASC) ? Sort.by(SmartphonesAttributes.getAttributeName(attribute)).ascending() : Sort.by(SmartphonesAttributes.getAttributeName(attribute)).descending());
     }
 
     public void save(Smartphones value) {

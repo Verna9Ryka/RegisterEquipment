@@ -1,9 +1,12 @@
 package com.example.RegisterEquipment.services.typesEquipment;
 
+import com.example.RegisterEquipment.enums.SmartphonesAttributes;
 import com.example.RegisterEquipment.enums.TelevisionsAttributes;
+import com.example.RegisterEquipment.models.typesEquipment.Smartphones;
 import com.example.RegisterEquipment.models.typesEquipment.Televisions;
 import com.example.RegisterEquipment.repositories.typesEquipment.TelevisionsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -43,7 +46,7 @@ public class TelevisionsService {
                 break;
             }
             case COLOR: {
-                list = this.repository.findAllByColor(value);
+                list = this.repository.findAllByColorIgnoreCase(value);
                 break;
             }
             case SIZE: {
@@ -51,7 +54,7 @@ public class TelevisionsService {
                 break;
             }
             case IN_STOCK: {
-                list = this.repository.findAllByInStock(value);
+                list = this.repository.findAllByInStockIgnoreCase(value);
                 break;
             }
             case CATEGORY: {
@@ -66,6 +69,10 @@ public class TelevisionsService {
                 break;
         }
         return list;
+    }
+
+    public List<Televisions> sortSelection(final TelevisionsAttributes attribute, final Sort.Direction direction) throws Exception {
+        return this.repository.findAll((direction == Sort.Direction.ASC) ? Sort.by(TelevisionsAttributes.getAttributeName(attribute)).ascending() : Sort.by(TelevisionsAttributes.getAttributeName(attribute)).descending());
     }
 
     public void save(Televisions value) {

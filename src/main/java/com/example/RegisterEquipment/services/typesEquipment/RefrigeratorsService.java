@@ -1,9 +1,12 @@
 package com.example.RegisterEquipment.services.typesEquipment;
 
+import com.example.RegisterEquipment.enums.ComputersAttributes;
 import com.example.RegisterEquipment.enums.RefrigeratorsAttributes;
+import com.example.RegisterEquipment.models.typesEquipment.Computers;
 import com.example.RegisterEquipment.models.typesEquipment.Refrigerators;
 import com.example.RegisterEquipment.repositories.typesEquipment.RefrigeratorsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -46,7 +49,7 @@ public class RefrigeratorsService {
                 break;
             }
             case COLOR: {
-                list = this.repository.findAllByColor(value);
+                list = this.repository.findAllByColorIgnoreCase(value);
                 break;
             }
             case SIZE: {
@@ -54,7 +57,7 @@ public class RefrigeratorsService {
                 break;
             }
             case IN_STOCK: {
-                list = this.repository.findAllByInStock(value);
+                list = this.repository.findAllByInStockIgnoreCase(value);
                 break;
             }
             case TYPE_COMPRESSOR: {
@@ -65,6 +68,10 @@ public class RefrigeratorsService {
                 break;
         }
         return list;
+    }
+
+    public List<Refrigerators> sortSelection(final RefrigeratorsAttributes attribute, final Sort.Direction direction) throws Exception {
+        return this.repository.findAll((direction == Sort.Direction.ASC) ? Sort.by(RefrigeratorsAttributes.getAttributeName(attribute)).ascending() : Sort.by(RefrigeratorsAttributes.getAttributeName(attribute)).descending());
     }
 
     public void save(Refrigerators value) {
